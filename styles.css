@@ -1,0 +1,237 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f0f0f5;
+  background-image: url("assets/heart.jpg"); /* Verifique se o caminho está correto */
+  background-repeat: repeat; /* Repete o background */
+  background-size: 50px 50px; /* Diminui o tamanho da imagem de fundo */
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+.wrapper {
+  text-align: center;
+  position: relative;
+}
+.title {
+  font-size: 2em;
+  margin-bottom: 20px;
+  color: #dc143c;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  animation: colorChange 3s infinite alternate;
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.8
+  ); /* Fundo branco semi-transparente */
+  padding: 10px; /* Espaçamento interno */
+  border-radius: 10px; /* Bordas arredondadas */
+}
+@keyframes colorChange {
+  0% {
+    color: #dc143c;
+  }
+  100% {
+    color: #ff69b4;
+  }
+}
+.explanation {
+  font-size: 1.5em;
+  margin-bottom: 30px;
+  color: #555;
+  font-weight: bold;
+  opacity: 1; /* Texto visível inicialmente */
+  transition: opacity 1s ease-in-out; /* Animação suave para aparecer */
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+  animation: bounceText 2s infinite;
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.8
+  ); /* Fundo branco semi-transparente */
+  padding: 10px; /* Espaçamento interno */
+  border-radius: 10px; /* Bordas arredondadas */
+}
+@keyframes bounceText {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centraliza horizontalmente */
+  justify-content: center;
+  text-align: center;
+}
+.envelope {
+  width: 220px;
+  height: 160px;
+  background: linear-gradient(145deg, #d9534f, #c9302c);
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 12px;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin-bottom: 20px; /* Ajusta a distância vertical */
+}
+.envelope:hover,
+.envelope:active {
+  transform: scale(1.05);
+  box-shadow: 6px 6px 14px rgba(0, 0, 0, 0.3);
+}
+.top {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 50%;
+  background: #b52b27;
+  border-radius: 12px 12px 0 0;
+  transition: transform 0.5s ease-in-out;
+  transform-origin: top;
+}
+.bottom {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 50%;
+  background: #d9534f;
+  border-radius: 0 0 12px 12px;
+}
+.text {
+  font-size: 1.2em;
+  color: white;
+  font-weight: bold;
+}
+.photo {
+  margin-top: 50px;
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  top: 10;
+  left: 50;
+  transform: scale(0);
+  width: 100%; /* Adicionando largura responsiva */
+  max-width: 220px; /* Limitando ao tamanho do envelope */
+  height: auto; /* Ajuste automático da altura */
+  animation: spinOnce 2s linear 1; /* Gira mais rápido e para */
+}
+@keyframes spinOnce {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10%;
+  border: 5px solid pink;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
+}
+.arrow {
+  position: relative;
+  display: center;
+  justify-content: center;
+  align-items: center;
+  top: -10px;
+  left: 3%;
+  transform: translateX(-50%);
+  font-size: 8em;
+  animation: bounce 1s infinite;
+  color: black;
+  cursor: pointer;
+  z-index: 1; /* A seta fica acima da foto inicialmente */
+  margin-bottom: 20px; /* Ajusta a distância vertical */
+}
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translate(-50%, 0);
+  }
+  50% {
+    transform: translate(-50%, -10px);
+  }
+}
+#open-envelope:checked + .envelope .top {
+  transform: rotateX(180deg);
+}
+#open-envelope:checked ~ .photo {
+  opacity: 1;
+  pointer-events: auto;
+  z-index: 2; /* Foto vai ficar acima do envelope e da seta */
+  transform: scale(1); /* Expande para cobrir os elementos */
+}
+#open-envelope:checked ~ .explanation {
+  opacity: 1; /* Torna o texto visível após o clique */
+}
+#open-envelope:checked ~ #explanation-wrapper .explanation {
+  opacity: 1; /* Torna o texto visível após o clique */
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Media Queries para Responsividade */
+@media (max-width: 768px) {
+  .title {
+    font-size: 1.5em;
+    padding: 8px;
+  }
+  .explanation {
+    font-size: 1.2em;
+    padding: 8px;
+  }
+  .envelope {
+    width: 180px;
+    height: 130px;
+  }
+  .photo {
+    max-width: 180px;
+  }
+  .arrow {
+    font-size: 6em;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 1.2em;
+    padding: 6px;
+  }
+  .explanation {
+    font-size: 1em;
+    padding: 6px;
+  }
+  .envelope {
+    width: 150px;
+    height: 110px;
+  }
+  .photo {
+    max-width: 150px;
+  }
+  .arrow {
+    font-size: 4em;
+  }
+}
