@@ -6,7 +6,8 @@ body {
   background-color: #f0f0f5;
   background-image: url("assets/heart.jpg"); /* Verifique se o caminho está correto */
   background-repeat: repeat; /* Repete o background */
-  background-size: 50px 50px; /* Diminui o tamanho da imagem de fundo */
+  background-size: 150px 150px; /* Aumenta o tamanho da imagem de fundo */
+  background-position: 100px 0px; /* Define o espaçamento entre as imagens de fundo */
   font-family: Arial, sans-serif;
   margin: 0;
 }
@@ -20,12 +21,7 @@ body {
   color: #dc143c;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
   animation: colorChange 3s infinite alternate;
-  background-color: rgba(
-    255,
-    255,
-    255,
-    0.8
-  ); /* Fundo branco semi-transparente */
+  background-color: white; /* Fundo branco com maior opacidade */
   padding: 10px; /* Espaçamento interno */
   border-radius: 10px; /* Bordas arredondadas */
 }
@@ -46,12 +42,7 @@ body {
   transition: opacity 1s ease-in-out; /* Animação suave para aparecer */
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
   animation: bounceText 2s infinite;
-  background-color: rgba(
-    255,
-    255,
-    255,
-    0.8
-  ); /* Fundo branco semi-transparente */
+  background-color: white; /* Fundo branco com maior opacidade */
   padding: 10px; /* Espaçamento interno */
   border-radius: 10px; /* Bordas arredondadas */
 }
@@ -99,6 +90,12 @@ body {
   border-radius: 12px 12px 0 0;
   transition: transform 0.5s ease-in-out;
   transform-origin: top;
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    85% 100%,
+    15% 100%
+  ); /* Forma de trapézio invertido */
 }
 .bottom {
   position: absolute;
@@ -157,6 +154,9 @@ body {
   cursor: pointer;
   z-index: 1; /* A seta fica acima da foto inicialmente */
   margin-bottom: 20px; /* Ajusta a distância vertical */
+  background-color: white; /* Fundo branco semi-transparente */
+  padding: 10px; /* Espaçamento interno */
+  border-radius: 10%; /* Forma circular */
 }
 @keyframes bounce {
   0%,
